@@ -7,6 +7,9 @@ ModelImporter:
       74: 4723146814002874508
     second: Armature|Attack
   - first:
+      74: -5536732487774996098
+    second: Armature|ShapeShift
+  - first:
       74: 8349542763059015795
     second: Armature|Walk
   externalObjects: {}
@@ -79,7 +82,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

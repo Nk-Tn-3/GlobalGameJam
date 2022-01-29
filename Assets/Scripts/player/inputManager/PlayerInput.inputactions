@@ -1,0 +1,134 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "PlayerMovement",
+            "id": "efa8a437-9e41-426c-a744-4c9bd4ffb9d1",
+            "actions": [
+                {
+                    "name": "Horizontal Movement",
+                    "type": "PassThrough",
+                    "id": "76dc53e6-57e3-4783-8f83-6b4b31dce74f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "4a8736cd-905d-4442-99a2-33daf8d8191c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "63a1be9a-9e56-4e2d-aaf2-086433021ac8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "MouseLook",
+                    "type": "PassThrough",
+                    "id": "3bf5c9ee-5df8-4fa7-bbe6-28c346a100e1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Hold"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "5799e7b2-b5de-47db-b759-a9978cf465c4",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "bc41a585-cbc1-4f15-a3af-68c05f2c8c72",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "0351d800-d259-46aa-984d-1751b2a3936d",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "58316f89-372a-4696-a63f-7ee4af8d500e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "1213295b-3139-4229-805a-4411a7ce1373",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5acf4cd2-52d4-452f-8eae-fbef01c3ba03",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8960aca6-d3c2-403c-a27a-42e51005ffc8",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "846f7d57-ba6c-4205-bd29-90b2be17c5d2",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
