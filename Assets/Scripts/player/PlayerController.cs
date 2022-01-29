@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     float playerHeight = 2f;
     Vector2 horizontalInput;
     private Transform cameraTransform;
+    [SerializeField] private Animator playerAnimator;
 
 
     //Slope
@@ -93,6 +94,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airmovementMultiplier, ForceMode.Acceleration);
         }
+        if(horizontalInput.x* horizontalInput.x>0 || horizontalInput.y* horizontalInput.y>0 && isGrounded)
+        {
+            //Walk
+            playerAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }
       
     }
 
@@ -114,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
         if (inputmanager.PlayerJump() && isGrounded)
         {
+            playerAnimator.SetTrigger("Jump");
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * Mathf.Sqrt(jumpHeight * -1f * Physics.gravity.y), ForceMode.Impulse);
       
