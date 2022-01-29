@@ -36,6 +36,22 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "Hold"
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "be15470f-9ebe-49f7-97d2-5dd0f4ccfa30",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShapeShift",
+                    "type": "Button",
+                    "id": "a58dd757-5684-4582-a10f-3cc3efc0556a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -124,6 +140,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c42846a9-1f1b-4e53-b9f4-eeb997f4e43b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2860b275-2d9d-4abf-8baa-01f686cb132f",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShapeShift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

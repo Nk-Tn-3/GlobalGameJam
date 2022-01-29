@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour
     float playerHeight = 2f;
     Vector2 horizontalInput;
     private Transform cameraTransform;
-    [SerializeField] private Animator playerAnimator;
+
+    [SerializeField] Animator chickenAnim, DinoAnim;
+    private Animator playerAnimator;
 
 
     //Slope
@@ -46,9 +48,14 @@ public class PlayerController : MonoBehaviour
 
 
 
-  
+
+    //ShapeShift
+    [SerializeField] GameObject chicken,dino;
+    public int index;
 
 
+    //Cameras
+    [SerializeField]GameObject dinoCam,chickecCam;
 
     private void Start()
     {
@@ -58,13 +65,20 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         collider = GetComponent<Collider>();
         moveSpeed = walkSpeed;
+        playerAnimator = chickenAnim;
     }
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, sphereRadius,groundLayer);
     
         ControlDrag();
+        ShapeShift();
+        if (index == 0)
         Jump();
+        else
+        {
+            Attack();
+        }
         ControlSpeed();
     }
 
@@ -94,7 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airmovementMultiplier, ForceMode.Acceleration);
         }
-        if(horizontalInput.x* horizontalInput.x>0 || horizontalInput.y* horizontalInput.y>0 && isGrounded)
+        if(horizontalInput.x* horizontalInput.x>0 || horizontalInput.y* horizontalInput.y>0 || inputmanager.GetMouseMove().x>1f && isGrounded)
         {
             //Walk
             playerAnimator.SetBool("isWalking", true);
@@ -170,4 +184,57 @@ public class PlayerController : MonoBehaviour
             moveSpeed = moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
     }
+
+
+    void ShapeShift()
+    {
+        if (inputmanager.ShapeShift()){
+            
+            if (index == 0) index = 1;
+            else { index = 0; }
+       
+        if (index == 1)
+        {
+            playerAnimator.SetTrigger("ShapeOut");
+            StartCoroutine(Toggle(chicken,false));
+            StartCoroutine(Toggle(dino, true));
+            playerAnimator = DinoAnim;
+                dinoCam.SetActive(true);
+                chickecCam.SetActive(false);
+
+        }
+        else 
+        {
+            playerAnimator.SetTrigger("ShapeOut");
+            StartCoroutine(Toggle(dino, false));
+            StartCoroutine(Toggle(chicken, true));
+            playerAnimator = chickenAnim;
+                dinoCam.SetActive(false);
+                chickecCam.SetActive(true);
+
+            }
+        }
+
+
+    }
+
+    void Attack()
+    {
+        if (index == 1 && inputmanager.Attack()){
+            playerAnimator.SetTrigger("Attack");
+            print("here");
+
+        }
+      
+    }
+
+   
+
+    IEnumerator Toggle(GameObject obj,bool val)
+    {
+        yield return new WaitForSeconds(0.4f);
+        obj.SetActive(val);
+        yield return null;
+    }
+
 }

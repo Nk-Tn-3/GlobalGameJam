@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/player/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/player/inputManager/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -49,6 +49,22 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""be15470f-9ebe-49f7-97d2-5dd0f4ccfa30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShapeShift"",
+                    ""type"": ""Button"",
+                    ""id"": ""a58dd757-5684-4582-a10f-3cc3efc0556a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +155,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""MouseLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c42846a9-1f1b-4e53-b9f4-eeb997f4e43b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2860b275-2d9d-4abf-8baa-01f686cb132f"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShapeShift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +189,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_Run = m_PlayerMovement.FindAction("Run", throwIfNotFound: true);
         m_PlayerMovement_MouseLook = m_PlayerMovement.FindAction("MouseLook", throwIfNotFound: true);
+        m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerMovement_ShapeShift = m_PlayerMovement.FindAction("ShapeShift", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +244,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Jump;
     private readonly InputAction m_PlayerMovement_Run;
     private readonly InputAction m_PlayerMovement_MouseLook;
+    private readonly InputAction m_PlayerMovement_Attack;
+    private readonly InputAction m_PlayerMovement_ShapeShift;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -212,6 +254,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputAction @Run => m_Wrapper.m_PlayerMovement_Run;
         public InputAction @MouseLook => m_Wrapper.m_PlayerMovement_MouseLook;
+        public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
+        public InputAction @ShapeShift => m_Wrapper.m_PlayerMovement_ShapeShift;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +277,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @MouseLook.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
                 @MouseLook.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
                 @MouseLook.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
+                @Attack.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
+                @ShapeShift.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
+                @ShapeShift.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
+                @ShapeShift.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +299,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @MouseLook.started += instance.OnMouseLook;
                 @MouseLook.performed += instance.OnMouseLook;
                 @MouseLook.canceled += instance.OnMouseLook;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @ShapeShift.started += instance.OnShapeShift;
+                @ShapeShift.performed += instance.OnShapeShift;
+                @ShapeShift.canceled += instance.OnShapeShift;
             }
         }
     }
@@ -259,5 +315,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnShapeShift(InputAction.CallbackContext context);
     }
 }

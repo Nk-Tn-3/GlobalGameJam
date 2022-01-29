@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     //Settings part
     GameSettings settings;
     float mouseSensitivity;
+    [SerializeField]
+    float rotateSpeed;
     public Quaternion nextRotation;
     float YRotation;
     public float rotationLerp = 0.5f;
@@ -32,7 +34,6 @@ public class CameraController : MonoBehaviour
         mouseSensitivity = settings.mouseSensitivity * settings.mouseMultiplier;
         Vector2 mouseMoveDelta = inputManager.GetMouseMove();
 
-
         transform.rotation *= Quaternion.AngleAxis(mouseMoveDelta.x * mouseSensitivity, Vector3.up);
 
 
@@ -53,10 +54,20 @@ public class CameraController : MonoBehaviour
         {
             angles.x = 40;
         }
-      
 
         followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+        /*
+        Vector2 _move = inputManager.GetPlayerMovement();
+        if (_move.x * _move.x > 0 || _move.y * _move.y > 0)
+        {
+
+            //Set the player rotation based on the look transform
+            transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
+            //reset the y rotation of the look transform
+            followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
 
 
+        }
+        */
     }
 }

@@ -8,9 +8,18 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        ToggleCursor(true);
+
+
 
     }
 
+
+    void ToggleCursor(bool val)
+    {
+        if (val)
+            Cursor.lockState = CursorLockMode.Locked;
+    }
     // Update is called once per frame
     void Update()
     {

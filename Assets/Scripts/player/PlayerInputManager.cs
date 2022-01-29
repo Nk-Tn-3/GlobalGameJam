@@ -53,7 +53,14 @@ public class PlayerInputManager : MonoBehaviour
     {
         return movementActions.Run.ReadValue<float>()==1f;
     }
-
+    public bool Attack()
+    {
+        return movementActions.Attack.triggered;
+    }
+    public bool ShapeShift()
+    {
+        return movementActions.ShapeShift.triggered;
+    }
 
     private void OnEnable()
     {
