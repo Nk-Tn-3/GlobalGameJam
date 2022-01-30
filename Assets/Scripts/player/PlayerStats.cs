@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public float maxHealthChicken = 20, maxHealthTrex = 300;
@@ -43,6 +44,10 @@ public class PlayerStats : MonoBehaviour
         if (index == 0) currentChickenHealth -= dmg;
         else currentDinoHealth -= dmg;
 
+        if(currentChickenHealth<=0 || currentDinoHealth <= 0)
+        {
+            Die();
+        }
 
         ChangeUIImage(index);
 
@@ -51,7 +56,7 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        print("end");
+        SceneManager.LoadScene(0);
     }
 
 }

@@ -38,6 +38,11 @@ public class PlayerInputManager : MonoBehaviour
     {
         return horizontalInput;
     }
+
+    public bool Pause()
+    {
+        return movementActions.Pause.triggered;
+    }
     public Vector2 GetMouseMove()
     {
         return movementActions.MouseLook.ReadValue<Vector2>();

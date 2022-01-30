@@ -65,6 +65,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""05f791cf-8bc5-47fc-8370-d5a5e137bbdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""ShapeShift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b104152-6a06-4aec-86c0-d77d87419255"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -191,6 +210,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_MouseLook = m_PlayerMovement.FindAction("MouseLook", throwIfNotFound: true);
         m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
         m_PlayerMovement_ShapeShift = m_PlayerMovement.FindAction("ShapeShift", throwIfNotFound: true);
+        m_PlayerMovement_Pause = m_PlayerMovement.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +266,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_MouseLook;
     private readonly InputAction m_PlayerMovement_Attack;
     private readonly InputAction m_PlayerMovement_ShapeShift;
+    private readonly InputAction m_PlayerMovement_Pause;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -256,6 +277,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @MouseLook => m_Wrapper.m_PlayerMovement_MouseLook;
         public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
         public InputAction @ShapeShift => m_Wrapper.m_PlayerMovement_ShapeShift;
+        public InputAction @Pause => m_Wrapper.m_PlayerMovement_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ShapeShift.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
                 @ShapeShift.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
                 @ShapeShift.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnShapeShift;
+                @Pause.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +330,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ShapeShift.started += instance.OnShapeShift;
                 @ShapeShift.performed += instance.OnShapeShift;
                 @ShapeShift.canceled += instance.OnShapeShift;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -317,5 +345,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMouseLook(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnShapeShift(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
