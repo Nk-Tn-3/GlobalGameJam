@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerStats stats;
 
     public float currentHealth;
-   
 
+    bool canAttack = true;
 
 
 
@@ -239,14 +239,23 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
+   
     void Attack()
     {
-        if (index == 1 && inputmanager.Attack()){
+        if (index == 1 && inputmanager.Attack() && canAttack){
+
             playerAnimator.SetTrigger("Attack");
-         
+            canAttack = false;
+            StartCoroutine(RefreshAttack());
         }
       
+    }
+    public float attackRecharge = 1.3f;
+    IEnumerator RefreshAttack()
+    {
+        yield return new WaitForSeconds(attackRecharge);
+        canAttack = true;
+
     }
 
    

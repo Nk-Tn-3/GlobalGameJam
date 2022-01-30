@@ -8,13 +8,19 @@ public class PlayerAttack : MonoBehaviour
     Collider col;
 
 
-
+    float damage = 40f;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Destructable"))
         {
-            print("attack");
+        
             other.GetComponent<BrickWall>().GetHit();
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Stats>().GetHit(damage,this.transform.position);
+            
         }
     }
 

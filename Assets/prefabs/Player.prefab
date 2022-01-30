@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1667682498
 Transform:
   m_ObjectHideFlags: 0
@@ -1586,9 +1586,10 @@ GameObject:
   - component: {fileID: 5507531281909497220}
   - component: {fileID: 5507531281909497221}
   - component: {fileID: 5507531281909497218}
+  - component: {fileID: 1852359080}
   m_Layer: 0
   m_Name: Player
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1697,6 +1698,8 @@ MonoBehaviour:
   index: 0
   dinoCam: {fileID: 0}
   chickecCam: {fileID: 0}
+  stats: {fileID: 1852359080}
+  currentHealth: 0
 --- !u!114 &5507531281909497218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1716,25 @@ MonoBehaviour:
   nextRotation: {x: 0, y: 0, z: 0, w: 0}
   rotationLerp: 0.5
   followTransform: {fileID: 5507531280662026162}
+--- !u!114 &1852359080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507531281909497217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5829df64de01e343b68533698cbd9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthChicken: 20
+  maxHealthTrex: 300
+  currentChickenHealth: 0
+  currentDinoHealth: 0
+  DinoImage: {fileID: 0}
+  ChickenImage: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &5507531282547208233
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     public float maxHealthChicken = 20, maxHealthTrex = 300;
     public float currentChickenHealth, currentDinoHealth;
-    float index = 0;
+    int index = 0;
     [SerializeField]
     GameObject DinoImage, ChickenImage;
 
@@ -38,5 +38,20 @@ public class PlayerStats : MonoBehaviour
     }
 
 
+    public void TakeDamage(float dmg)
+    {
+        if (index == 0) currentChickenHealth -= dmg;
+        else currentDinoHealth -= dmg;
+
+
+        ChangeUIImage(index);
+
+    }
+
+
+    void Die()
+    {
+        print("end");
+    }
 
 }
