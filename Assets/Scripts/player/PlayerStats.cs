@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentChickenHealth = maxHealthChicken;
         currentDinoHealth = maxHealthTrex;
+        ChangeUIImage(0);
     }
     public void ChangeUIImage(int val)
     {
