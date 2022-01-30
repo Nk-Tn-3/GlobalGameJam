@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     RaycastHit slopeHit;
     Vector3 slopeMoveDirection;
 
+    [SerializeField] BoxCollider[] colliders;
 
 
 
@@ -57,6 +58,20 @@ public class PlayerController : MonoBehaviour
     //Cameras
     [SerializeField]GameObject dinoCam,chickecCam;
 
+ 
+    //Stats
+    [Space(5)]
+    [Header("Stats")]
+    [SerializeField] PlayerStats stats;
+
+    public float currentHealth;
+   
+
+
+
+
+
+
     private void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -66,6 +81,7 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<Collider>();
         moveSpeed = walkSpeed;
         playerAnimator = chickenAnim;
+        stats.ChangeUIImage(index);
     }
     private void Update()
     {
@@ -195,22 +211,28 @@ public class PlayerController : MonoBehaviour
        
         if (index == 1)
         {
+                stats.ChangeUIImage(1);
             playerAnimator.SetTrigger("ShapeOut");
             StartCoroutine(Toggle(chicken,false));
             StartCoroutine(Toggle(dino, true));
             playerAnimator = DinoAnim;
                 dinoCam.SetActive(true);
                 chickecCam.SetActive(false);
+                colliders[0].enabled = false;
+                colliders[1].enabled = true;
 
         }
         else 
         {
-            playerAnimator.SetTrigger("ShapeOut");
+                stats.ChangeUIImage(0);
+                playerAnimator.SetTrigger("ShapeOut");
             StartCoroutine(Toggle(dino, false));
             StartCoroutine(Toggle(chicken, true));
             playerAnimator = chickenAnim;
                 dinoCam.SetActive(false);
                 chickecCam.SetActive(true);
+                colliders[0].enabled = true;
+                colliders[1].enabled = false;
 
             }
         }
@@ -222,8 +244,7 @@ public class PlayerController : MonoBehaviour
     {
         if (index == 1 && inputmanager.Attack()){
             playerAnimator.SetTrigger("Attack");
-            print("here");
-
+         
         }
       
     }
@@ -236,5 +257,8 @@ public class PlayerController : MonoBehaviour
         obj.SetActive(val);
         yield return null;
     }
+
+
+
 
 }
